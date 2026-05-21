@@ -3,156 +3,109 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>iToF Learning Dashboard</title>
+    <title>概要 | iToF Learning Dashboard</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
+  <body data-page="overview">
     <main class="shell">
-      <header class="topbar">
-        <div>
-          <p class="kicker">time of flight learning lab</p>
-          <h1>iToF 学習ダッシュボード</h1>
-        </div>
-        <div class="status">
+      <header class="masthead">
+        <a class="brand" href="./index.html" aria-label="iToF dashboard home">
+          <span class="brand-mark">ToF</span>
+          <span>
+            <span class="kicker">time of flight learning lab</span>
+            <span class="brand-title">iToF 学習ダッシュボード</span>
+          </span>
+        </a>
+        <div class="status-strip" aria-label="simulation constants">
           <span>c = 300,000 km/s</span>
           <span>640 x 480 px</span>
-          <span>no noise</span>
+          <span>noise 0</span>
         </div>
       </header>
 
-      <section class="dashboard">
-        <section class="module module-wide">
-          <div class="module-header">
-            <div>
-              <span class="step">01</span>
-              <h2>位相で時間を読む</h2>
-            </div>
-            <output id="phase-value">72.0 deg</output>
+      <nav class="main-nav" aria-label="dashboard pages">
+        <a href="./index.html">概要</a>
+        <a href="./phase.html">位相</a>
+        <a href="./world.html">世界</a>
+        <a href="./htof.html">hTOF</a>
+        <a href="./formulas.html">式と表</a>
+      </nav>
+
+      <section class="page-hero">
+        <div>
+          <p class="eyebrow">overview</p>
+          <h1>距離が画素になるまでを、ページごとに分解する</h1>
+        </div>
+        <div class="hero-metrics">
+          <div>
+            <span>1m phase</span>
+            <strong>24 deg</strong>
           </div>
-
-          <canvas id="wave-canvas" class="wave-canvas" aria-label="送信光と戻り光の位相差"></canvas>
-
-          <div class="controls">
-            <label>
-              <span>距離 D</span>
-              <input id="distance" type="range" min="1" max="8" value="3" step="0.25" />
-              <strong id="distance-value">3.00 m</strong>
-            </label>
-            <label>
-              <span>変調周波数 f</span>
-              <input id="frequency" type="range" min="5" max="30" value="10" step="0.5" />
-              <strong id="frequency-value">10.0 MHz</strong>
-            </label>
+          <div>
+            <span>10MHz period</span>
+            <strong>100 ns</strong>
           </div>
-        </section>
+          <div>
+            <span>range</span>
+            <strong>15 m</strong>
+          </div>
+        </div>
+      </section>
 
+      <section class="overview-grid">
+        <a class="route-card route-phase" href="./phase.html">
+          <span class="route-index">01</span>
+          <h2>位相</h2>
+          <p>周期的な光のズレを角度として読む。</p>
+          <strong>D = φ / 360 x c / 2f</strong>
+        </a>
+
+        <a class="route-card route-world" href="./world.html">
+          <span class="route-index">02</span>
+          <h2>世界</h2>
+          <p>640 x 480 の各画素が別々の距離を持つ。</p>
+          <strong>pixel(x, y) -> D</strong>
+        </a>
+
+        <a class="route-card route-htof" href="./htof.html">
+          <span class="route-index">03</span>
+          <h2>hTOF</h2>
+          <p>粗いゲートと細かい割合を足し合わせる。</p>
+          <strong>(gate + ratio) x width</strong>
+        </a>
+
+        <a class="route-card route-table" href="./formulas.html">
+          <span class="route-index">04</span>
+          <h2>式と表</h2>
+          <p>1mから8mまでの往復時間と位相を確認する。</p>
+          <strong>1m -> 6.667ns -> 24deg</strong>
+        </a>
+      </section>
+
+      <section class="split-layout">
         <section class="module">
           <div class="module-header">
             <div>
-              <span class="step">02</span>
-              <h2>算数の道筋</h2>
-            </div>
-          </div>
-          <div class="metric-list">
-            <div>
-              <span>周期 T = 1 / f</span>
-              <strong id="period-value">100.000 ns</strong>
-            </div>
-            <div>
-              <span>往復時間 τ = 2D / c</span>
-              <strong id="round-trip-value">20.000 ns</strong>
-            </div>
-            <div>
-              <span>戻した距離</span>
-              <strong id="recovered-value">3.000 m</strong>
-            </div>
-            <div>
-              <span>一意に測れる範囲</span>
-              <strong id="range-value">15.00 m</strong>
-            </div>
-          </div>
-          <p id="formula-line" class="formula">D = 72.0 / 360 x 15.00 = 3.000 m</p>
-        </section>
-
-        <section class="module">
-          <div class="module-header">
-            <div>
-              <span class="step">03</span>
-              <h2>640 x 480 の世界</h2>
+              <span class="step">snapshot</span>
+              <h2>8個の積み木</h2>
             </div>
           </div>
           <canvas id="sensor-canvas" class="sensor-canvas" aria-label="1mから8mの積み木深度ビュー"></canvas>
         </section>
 
-        <section class="module module-wide">
-          <div class="module-header">
-            <div>
-              <span class="step">04</span>
-              <h2>1mから8mの位相表</h2>
-            </div>
-          </div>
-          <div class="table-wrap">
-            <table id="phase-table">
-              <thead>
-                <tr>
-                  <th>距離</th>
-                  <th>往復時間</th>
-                  <th>位相遅れ</th>
-                  <th>復元距離</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="module module-wide">
-          <div class="module-header">
-            <div>
-              <span class="step">05</span>
-              <h2>hTOF: 粗いゲート + 細かい割合</h2>
-            </div>
-            <div class="chips">
-              <span id="htof-gate">gate 3</span>
-              <span id="htof-ratio">0.25</span>
-            </div>
-          </div>
-          <canvas id="htof-canvas" class="htof-canvas" aria-label="hTOFの粗いゲートと細かい割合"></canvas>
-          <div class="controls single">
-            <label>
-              <span>例: 物体距離</span>
-              <input id="htof-distance" type="range" min="0.25" max="8" value="3.25" step="0.25" />
-              <strong id="htof-distance-value">3.25 m</strong>
-            </label>
-          </div>
-          <p id="htof-line" class="formula">D = (3 + 0.25) x 1.00 = 3.25 m</p>
-        </section>
-
         <section class="module">
           <div class="module-header">
             <div>
-              <span class="step">06</span>
-              <h2>漫画でまとめ</h2>
+              <span class="step">flow</span>
+              <h2>測距の流れ</h2>
             </div>
           </div>
-          <div class="comic-grid">
-            <article>
-              <b>1</b>
-              <p>ストップウォッチで ns はつらい</p>
-            </article>
-            <article>
-              <b>2</b>
-              <p>LEDを周期的に点滅させる</p>
-            </article>
-            <article>
-              <b>3</b>
-              <p>戻り光は少し遅れている</p>
-            </article>
-            <article>
-              <b>4</b>
-              <p>遅れ角 φ から距離へ戻す</p>
-            </article>
-          </div>
+          <ol class="timeline">
+            <li><strong>光を出す</strong><span>10MHzなら100ns周期</span></li>
+            <li><strong>反射して戻る</strong><span>1mなら往復2m</span></li>
+            <li><strong>位相を読む</strong><span>1mなら24deg</span></li>
+            <li><strong>距離へ戻す</strong><span>D = φ / 360 x 15m</span></li>
+          </ol>
         </section>
       </section>
     </main>

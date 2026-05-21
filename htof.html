@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>hTOF | iToF Learning Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="htof">
+    <main class="shell">
+      <header class="masthead">
+        <a class="brand" href="./index.html" aria-label="iToF dashboard home">
+          <span class="brand-mark">ToF</span>
+          <span>
+            <span class="kicker">time of flight learning lab</span>
+            <span class="brand-title">iToF 学習ダッシュボード</span>
+          </span>
+        </a>
+        <div class="status-strip" aria-label="simulation constants">
+          <span>TP = 6.667ns</span>
+          <span>gate width = 1m</span>
+          <span>N2 / N3</span>
+        </div>
+      </header>
+
+      <nav class="main-nav" aria-label="dashboard pages">
+        <a href="./index.html">概要</a>
+        <a href="./phase.html">位相</a>
+        <a href="./world.html">世界</a>
+        <a href="./htof.html">hTOF</a>
+        <a href="./formulas.html">式と表</a>
+      </nav>
+
+      <section class="page-hero compact">
+        <div>
+          <p class="eyebrow">hybrid tof</p>
+          <h1>粗いゲートと細かい割合で距離を作る</h1>
+        </div>
+        <div class="chips">
+          <span id="htof-gate">gate 3</span>
+          <span id="htof-ratio">0.25</span>
+        </div>
+      </section>
+
+      <section class="lab-grid">
+        <section class="module module-primary">
+          <div class="module-header">
+            <div>
+              <span class="step">gate ruler</span>
+              <h2>粗いゲート + N3比率</h2>
+            </div>
+          </div>
+          <canvas id="htof-canvas" class="htof-canvas tall" aria-label="hTOFの粗いゲートと細かい割合"></canvas>
+          <div class="controls single">
+            <label>
+              <span>物体距離</span>
+              <input id="htof-distance" type="range" min="0.25" max="8" value="3.25" step="0.25" />
+              <strong id="htof-distance-value">3.25 m</strong>
+            </label>
+          </div>
+          <p id="htof-line" class="formula">D = (3 + 0.25) x 1.00 = 3.25 m</p>
+        </section>
+
+        <aside class="module">
+          <div class="module-header">
+            <div>
+              <span class="step">charge split</span>
+              <h2>N2 と N3</h2>
+            </div>
+          </div>
+          <div class="bucket-diagram" aria-label="N2 and N3 charge buckets">
+            <div>
+              <span>N2</span>
+              <strong>early</strong>
+            </div>
+            <div>
+              <span>N3</span>
+              <strong>late</strong>
+            </div>
+          </div>
+          <p class="formula">fine = N3 / (N2 + N3)</p>
+          <p class="formula">D = (gate + fine) x 1m</p>
+        </aside>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

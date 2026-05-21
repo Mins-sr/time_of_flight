@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>位相 | iToF Learning Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="phase">
+    <main class="shell">
+      <header class="masthead">
+        <a class="brand" href="./index.html" aria-label="iToF dashboard home">
+          <span class="brand-mark">ToF</span>
+          <span>
+            <span class="kicker">time of flight learning lab</span>
+            <span class="brand-title">iToF 学習ダッシュボード</span>
+          </span>
+        </a>
+        <div class="status-strip" aria-label="simulation constants">
+          <span>c = 300,000 km/s</span>
+          <span>10MHz = 100ns</span>
+          <span>phase readout</span>
+        </div>
+      </header>
+
+      <nav class="main-nav" aria-label="dashboard pages">
+        <a href="./index.html">概要</a>
+        <a href="./phase.html">位相</a>
+        <a href="./world.html">世界</a>
+        <a href="./htof.html">hTOF</a>
+        <a href="./formulas.html">式と表</a>
+      </nav>
+
+      <section class="page-hero compact">
+        <div>
+          <p class="eyebrow">phase lab</p>
+          <h1>超短時間を、波形のズレ角として読む</h1>
+        </div>
+        <output id="phase-value">72.0 deg</output>
+      </section>
+
+      <section class="lab-grid">
+        <section class="module module-primary">
+          <div class="module-header">
+            <div>
+              <span class="step">waveform</span>
+              <h2>送信光と戻り光</h2>
+            </div>
+          </div>
+          <canvas id="wave-canvas" class="wave-canvas" aria-label="送信光と戻り光の位相差"></canvas>
+          <div class="controls">
+            <label>
+              <span>距離 D</span>
+              <input id="distance" type="range" min="1" max="8" value="3" step="0.25" />
+              <strong id="distance-value">3.00 m</strong>
+            </label>
+            <label>
+              <span>変調 f</span>
+              <input id="frequency" type="range" min="5" max="30" value="10" step="0.5" />
+              <strong id="frequency-value">10.0 MHz</strong>
+            </label>
+          </div>
+        </section>
+
+        <aside class="module">
+          <div class="module-header">
+            <div>
+              <span class="step">numbers</span>
+              <h2>計算値</h2>
+            </div>
+          </div>
+          <div class="metric-list">
+            <div>
+              <span>周期 T = 1 / f</span>
+              <strong id="period-value">100.000 ns</strong>
+            </div>
+            <div>
+              <span>往復時間 τ = 2D / c</span>
+              <strong id="round-trip-value">20.000 ns</strong>
+            </div>
+            <div>
+              <span>復元距離</span>
+              <strong id="recovered-value">3.000 m</strong>
+            </div>
+            <div>
+              <span>一意範囲</span>
+              <strong id="range-value">15.00 m</strong>
+            </div>
+          </div>
+          <p id="formula-line" class="formula">D = 72.0 / 360 x 15.00 = 3.000 m</p>
+        </aside>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

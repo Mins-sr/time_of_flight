@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>世界 | iToF Learning Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="world">
+    <main class="shell">
+      <header class="masthead">
+        <a class="brand" href="./index.html" aria-label="iToF dashboard home">
+          <span class="brand-mark">ToF</span>
+          <span>
+            <span class="kicker">time of flight learning lab</span>
+            <span class="brand-title">iToF 学習ダッシュボード</span>
+          </span>
+        </a>
+        <div class="status-strip" aria-label="simulation constants">
+          <span>640 x 480 px</span>
+          <span>20cm cube</span>
+          <span>1m - 8m</span>
+        </div>
+      </header>
+
+      <nav class="main-nav" aria-label="dashboard pages">
+        <a href="./index.html">概要</a>
+        <a href="./phase.html">位相</a>
+        <a href="./world.html">世界</a>
+        <a href="./htof.html">hTOF</a>
+        <a href="./formulas.html">式と表</a>
+      </nav>
+
+      <section class="page-hero compact">
+        <div>
+          <p class="eyebrow">sensor world</p>
+          <h1>画素ごとに距離が入る単純世界</h1>
+        </div>
+        <div class="hero-metrics">
+          <div>
+            <span>pixels</span>
+            <strong>307,200</strong>
+          </div>
+          <div>
+            <span>blocks</span>
+            <strong>8</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="lab-grid">
+        <section class="module module-primary">
+          <div class="module-header">
+            <div>
+              <span class="step">depth frame</span>
+              <h2>640 x 480 センサーフレーム</h2>
+            </div>
+          </div>
+          <canvas id="sensor-canvas" class="sensor-canvas tall" aria-label="1mから8mの積み木深度ビュー"></canvas>
+        </section>
+
+        <aside class="module">
+          <div class="module-header">
+            <div>
+              <span class="step">objects</span>
+              <h2>積み木の配置</h2>
+            </div>
+          </div>
+          <div class="object-list">
+            <div><span>サイズ</span><strong>20cm x 20cm x 20cm</strong></div>
+            <div><span>距離</span><strong>1m, 2m, 3m, 4m</strong></div>
+            <div><span>距離</span><strong>5m, 6m, 7m, 8m</strong></div>
+            <div><span>反射</span><strong>欠測なし / ノイズなし</strong></div>
+            <div><span>経路</span><strong>直達1本のみ</strong></div>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>

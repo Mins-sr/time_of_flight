@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>式と表 | iToF Learning Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="formulas">
+    <main class="shell">
+      <header class="masthead">
+        <a class="brand" href="./index.html" aria-label="iToF dashboard home">
+          <span class="brand-mark">ToF</span>
+          <span>
+            <span class="kicker">time of flight learning lab</span>
+            <span class="brand-title">iToF 学習ダッシュボード</span>
+          </span>
+        </a>
+        <div class="status-strip" aria-label="simulation constants">
+          <span>τ = 2D / c</span>
+          <span>φ = 360τ / T</span>
+          <span>D = φc / 720f</span>
+        </div>
+      </header>
+
+      <nav class="main-nav" aria-label="dashboard pages">
+        <a href="./index.html">概要</a>
+        <a href="./phase.html">位相</a>
+        <a href="./world.html">世界</a>
+        <a href="./htof.html">hTOF</a>
+        <a href="./formulas.html">式と表</a>
+      </nav>
+
+      <section class="page-hero compact">
+        <div>
+          <p class="eyebrow">formulas</p>
+          <h1>1mから8mまでの数値を確認する</h1>
+        </div>
+        <label class="inline-control">
+          <span>変調 f</span>
+          <input id="frequency" type="range" min="5" max="30" value="10" step="0.5" />
+          <strong id="frequency-value">10.0 MHz</strong>
+        </label>
+      </section>
+
+      <section class="formula-grid">
+        <section class="module">
+          <div class="module-header">
+            <div>
+              <span class="step">constants</span>
+              <h2>基準値</h2>
+            </div>
+          </div>
+          <div class="metric-list">
+            <div>
+              <span>周期 T</span>
+              <strong id="period-value">100.000 ns</strong>
+            </div>
+            <div>
+              <span>一意範囲</span>
+              <strong id="range-value">15.00 m</strong>
+            </div>
+            <div>
+              <span>1m往復</span>
+              <strong>6.667 ns</strong>
+            </div>
+            <div>
+              <span>1m位相</span>
+              <strong>24.0 deg</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="module module-table">
+          <div class="module-header">
+            <div>
+              <span class="step">table</span>
+              <h2>距離と位相</h2>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table id="phase-table">
+              <thead>
+                <tr>
+                  <th>距離</th>
+                  <th>往復時間</th>
+                  <th>位相遅れ</th>
+                  <th>復元距離</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
