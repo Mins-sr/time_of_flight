@@ -1,0 +1,11 @@
+{
+  "name": "time-of-flight-learning-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "coverage": "node --test --experimental-test-coverage",
+    "start": "python3 -m http.server 4173"
+  }
+}
