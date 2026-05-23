@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>概要 | iToF Learning Dashboard</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body data-page="overview">
@@ -19,66 +20,75 @@
         <div class="status-strip" aria-label="simulation constants">
           <span>c = 300,000 km/s</span>
           <span>640 x 480 px</span>
-          <span>noise 0</span>
+          <span>ノイズなし</span>
         </div>
       </header>
 
       <nav class="main-nav" aria-label="dashboard pages">
         <a href="./index.html">概要</a>
         <a href="./phase.html">位相</a>
+        <a href="./formulas.html">式と表</a>
         <a href="./world.html">世界</a>
         <a href="./htof.html">hTOF</a>
-        <a href="./formulas.html">式と表</a>
       </nav>
+      <p class="nav-hint">ナビは横にスクロールできます。</p>
 
       <section class="page-hero">
         <div>
-          <p class="eyebrow">overview</p>
+          <p class="eyebrow">全体像</p>
           <h1>距離が画素になるまでを、ページごとに分解する</h1>
         </div>
         <div class="hero-metrics">
           <div>
-            <span>1m phase</span>
+            <span>1mの位相差</span>
             <strong>24 deg</strong>
           </div>
           <div>
-            <span>10MHz period</span>
+            <span>10MHzの周期</span>
             <strong>100 ns</strong>
           </div>
           <div>
-            <span>range</span>
+            <span>位相だけの範囲</span>
             <strong>15 m</strong>
           </div>
         </div>
+      </section>
+
+      <section class="lesson-note">
+        <strong>このページで学ぶこと</strong>
+        <p>iToFは、光を出して戻り光の遅れから距離を求める方式です。ここでは「位相 → 式と表 → 画素の世界 → hTOF」の順に、距離が画像になるまでを追います。</p>
       </section>
 
       <section class="overview-grid">
         <a class="route-card route-phase" href="./phase.html">
           <span class="route-index">01</span>
           <h2>位相</h2>
-          <p>周期的な光のズレを角度として読む。</p>
+          <p>周期的な光のズレを、時間ではなく角度として読む。</p>
           <strong>D = φ / 360 x c / 2f</strong>
-        </a>
-
-        <a class="route-card route-world" href="./world.html">
-          <span class="route-index">02</span>
-          <h2>世界</h2>
-          <p>640 x 480 の各画素が別々の距離を持つ。</p>
-          <strong>pixel(x, y) -> D</strong>
-        </a>
-
-        <a class="route-card route-htof" href="./htof.html">
-          <span class="route-index">03</span>
-          <h2>hTOF</h2>
-          <p>粗いゲートと細かい割合を足し合わせる。</p>
-          <strong>(gate + ratio) x width</strong>
+          <span class="route-note">D=距離、φ=ズレ角、c=光速、f=点滅の速さ</span>
         </a>
 
         <a class="route-card route-table" href="./formulas.html">
-          <span class="route-index">04</span>
+          <span class="route-index">02</span>
           <h2>式と表</h2>
-          <p>1mから8mまでの往復時間と位相を確認する。</p>
+          <p>1mから8mまでの往復時間、位相差、復元距離を確認する。</p>
           <strong>1m -> 6.667ns -> 24deg</strong>
+        </a>
+
+        <a class="route-card route-world" href="./world.html">
+          <span class="route-index">03</span>
+          <h2>世界</h2>
+          <p>640 x 480 の各画素が、それぞれ1つの距離値を持つ。</p>
+          <strong>pixel(x, y) -> D</strong>
+          <span class="route-note">pixel(x, y)=画面上の1画素、D=その画素の距離</span>
+        </a>
+
+        <a class="route-card route-htof" href="./htof.html">
+          <span class="route-index">04</span>
+          <h2>hTOF</h2>
+          <p>粗い距離帯と、その中の細かい位置を足し合わせる。</p>
+          <strong>(gate + ratio) x width</strong>
+          <span class="route-note">gate=何m台か、ratio=その中の割合、width=1m幅</span>
         </a>
       </section>
 
@@ -91,6 +101,7 @@
             </div>
           </div>
           <canvas id="sensor-canvas" class="sensor-canvas" aria-label="1mから8mの積み木深度ビュー"></canvas>
+          <p class="read-guide">図の読み方: 明るい四角が20cm角の積み木です。色が近い/遠いを表し、各四角は1m, 2m, 3m...8mの距離を持ちます。</p>
         </section>
 
         <section class="module">
@@ -108,6 +119,11 @@
           </ol>
         </section>
       </section>
+
+      <a class="next-card" href="./phase.html">
+        <span>次に見るページ</span>
+        <strong>位相: 戻り光のズレを角度で読む</strong>
+      </a>
     </main>
 
     <script type="module" src="./src/app.js"></script>

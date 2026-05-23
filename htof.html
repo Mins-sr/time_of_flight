@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>hTOF | iToF Learning Dashboard</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body data-page="htof">
@@ -26,20 +27,26 @@
       <nav class="main-nav" aria-label="dashboard pages">
         <a href="./index.html">概要</a>
         <a href="./phase.html">位相</a>
+        <a href="./formulas.html">式と表</a>
         <a href="./world.html">世界</a>
         <a href="./htof.html">hTOF</a>
-        <a href="./formulas.html">式と表</a>
       </nav>
+      <p class="nav-hint">ナビは横にスクロールできます。</p>
 
       <section class="page-hero compact">
         <div>
-          <p class="eyebrow">hybrid tof</p>
+          <p class="eyebrow">hTOFの考え方</p>
           <h1>粗いゲートと細かい割合で距離を作る</h1>
         </div>
         <div class="chips">
           <span id="htof-gate">gate 3</span>
           <span id="htof-ratio">0.25</span>
         </div>
+      </section>
+
+      <section class="lesson-note">
+        <strong>このページで学ぶこと</strong>
+        <p>hTOFはhybrid Time-of-Flightの略です。だいたい何m台かを表す粗い距離帯 gate と、その中の細かい割合 fine を組み合わせて距離を出します。</p>
       </section>
 
       <section class="lab-grid">
@@ -51,6 +58,7 @@
             </div>
           </div>
           <canvas id="htof-canvas" class="htof-canvas tall" aria-label="hTOFの粗いゲートと細かい割合"></canvas>
+          <p class="read-guide">図の読み方: gate番号は0mから始まります。gate 3 は3m以上4m未満の区間です。青い線が、その区間内でどこまで進んだかを表します。</p>
           <div class="controls single">
             <label>
               <span>物体距離</span>
@@ -59,6 +67,7 @@
             </label>
           </div>
           <p id="htof-line" class="formula">D = (3 + 0.25) x 1.00 = 3.25 m</p>
+          <p class="read-guide">TP = 6.667ns は、1m幅のゲートを作るための時間幅です。</p>
         </section>
 
         <aside class="module">
@@ -71,17 +80,23 @@
           <div class="bucket-diagram" aria-label="N2 and N3 charge buckets">
             <div>
               <span>N2</span>
-              <strong>early</strong>
+              <strong>ゲート前半の信号量</strong>
             </div>
             <div>
               <span>N3</span>
-              <strong>late</strong>
+              <strong>ゲート後半の信号量</strong>
             </div>
           </div>
           <p class="formula">fine = N3 / (N2 + N3)</p>
           <p class="formula">D = (gate + fine) x 1m</p>
+          <p class="read-guide">fine は「そのgate内の細かい割合」です。N2とN3は戻り光から得た信号量で、N3の割合が大きいほど物体はそのgateの後ろ寄りにあります。</p>
         </aside>
       </section>
+
+      <a class="next-card" href="./index.html">
+        <span>次に見るページ</span>
+        <strong>概要: 学習ルートをもう一度ながめる</strong>
+      </a>
     </main>
 
     <script type="module" src="./src/app.js"></script>

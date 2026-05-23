@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>位相 | iToF Learning Dashboard</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body data-page="phase">
@@ -26,17 +27,23 @@
       <nav class="main-nav" aria-label="dashboard pages">
         <a href="./index.html">概要</a>
         <a href="./phase.html">位相</a>
+        <a href="./formulas.html">式と表</a>
         <a href="./world.html">世界</a>
         <a href="./htof.html">hTOF</a>
-        <a href="./formulas.html">式と表</a>
       </nav>
+      <p class="nav-hint">ナビは横にスクロールできます。</p>
 
       <section class="page-hero compact">
         <div>
-          <p class="eyebrow">phase lab</p>
+          <p class="eyebrow">位相を読む</p>
           <h1>超短時間を、波形のズレ角として読む</h1>
         </div>
         <output id="phase-value">72.0 deg</output>
+      </section>
+
+      <section class="lesson-note">
+        <strong>このページで学ぶこと</strong>
+        <p>位相とは、1周期を360度で表したときの戻り光のズレです。距離D → 往復時間τ → 位相差φ → 復元距離Dの順に見ます。</p>
       </section>
 
       <section class="lab-grid">
@@ -48,6 +55,7 @@
             </div>
           </div>
           <canvas id="wave-canvas" class="wave-canvas" aria-label="送信光と戻り光の位相差"></canvas>
+          <p class="read-guide">図の読み方: 青=送信、赤=戻り、横軸=時間、1周期=360度です。スライダーを動かすと、戻り光のズレ角が変わります。</p>
           <div class="controls">
             <label>
               <span>距離 D</span>
@@ -60,6 +68,13 @@
               <strong id="frequency-value">10.0 MHz</strong>
             </label>
           </div>
+          <p class="read-guide">変調 f は、光を1秒に何回点滅させるかです。fを上げると位相差は大きく見えますが、一意範囲は短くなります。</p>
+          <ol class="mini-steps">
+            <li>距離Dを決める</li>
+            <li>往復時間τ = 2D / c を出す</li>
+            <li>τを1周期の角度φに変える</li>
+            <li>φから距離Dへ戻す</li>
+          </ol>
         </section>
 
         <aside class="module">
@@ -88,8 +103,14 @@
             </div>
           </div>
           <p id="formula-line" class="formula">D = 72.0 / 360 x 15.00 = 3.000 m</p>
+          <p class="read-guide">復元距離は、測った位相差φから計算で戻した距離です。一意範囲は、位相だけで区別できる最大距離です。10MHzでは15mまでが折り返さずに読めます。</p>
         </aside>
       </section>
+
+      <a class="next-card" href="./formulas.html">
+        <span>次に見るページ</span>
+        <strong>式と表: 1mから8mまでを数値で確認する</strong>
+      </a>
     </main>
 
     <script type="module" src="./src/app.js"></script>

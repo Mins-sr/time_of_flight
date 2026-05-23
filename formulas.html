@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>式と表 | iToF Learning Dashboard</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body data-page="formulas">
@@ -26,21 +27,30 @@
       <nav class="main-nav" aria-label="dashboard pages">
         <a href="./index.html">概要</a>
         <a href="./phase.html">位相</a>
+        <a href="./formulas.html">式と表</a>
         <a href="./world.html">世界</a>
         <a href="./htof.html">hTOF</a>
-        <a href="./formulas.html">式と表</a>
       </nav>
+      <p class="nav-hint">ナビは横にスクロールできます。</p>
 
       <section class="page-hero compact">
         <div>
-          <p class="eyebrow">formulas</p>
+          <p class="eyebrow">式と表</p>
           <h1>1mから8mまでの数値を確認する</h1>
         </div>
-        <label class="inline-control">
-          <span>変調 f</span>
-          <input id="frequency" type="range" min="5" max="30" value="10" step="0.5" />
-          <strong id="frequency-value">10.0 MHz</strong>
-        </label>
+        <div class="hero-control">
+          <label class="inline-control">
+            <span>変調 f</span>
+            <input id="frequency" type="range" min="5" max="30" value="10" step="0.5" />
+            <strong id="frequency-value">10.0 MHz</strong>
+          </label>
+          <p class="read-guide">30MHzまで上げると一意範囲は5mになり、6m, 7m, 8mの復元距離に「折り返し」が付きます。</p>
+        </div>
+      </section>
+
+      <section class="lesson-note">
+        <strong>このページで学ぶこと</strong>
+        <p>距離D、往復時間τ、位相差φがどう対応するかを表で確認します。周波数を変えると、一意範囲と折り返しも変わります。</p>
       </section>
 
       <section class="formula-grid">
@@ -69,6 +79,15 @@
               <strong>24.0 deg</strong>
             </div>
           </div>
+          <div class="term-grid">
+            <div><span>D</span><strong>距離</strong></div>
+            <div><span>τ</span><strong>往復時間</strong></div>
+            <div><span>φ</span><strong>位相差</strong></div>
+            <div><span>c</span><strong>光速</strong></div>
+            <div><span>f</span><strong>変調周波数</strong></div>
+            <div><span>T</span><strong>周期</strong></div>
+          </div>
+          <p class="read-guide">注意: 一意範囲を超えると位相が折り返し、復元距離は元の距離と一致しません。</p>
         </section>
 
         <section class="module module-table">
@@ -78,6 +97,7 @@
               <h2>距離と位相</h2>
             </div>
           </div>
+          <p class="scroll-hint">表は横にスクロールできます。復元距離に「折り返し」が付いた行は、一意範囲を超えています。</p>
           <div class="table-wrap">
             <table id="phase-table">
               <thead>
@@ -93,6 +113,11 @@
           </div>
         </section>
       </section>
+
+      <a class="next-card" href="./world.html">
+        <span>次に見るページ</span>
+        <strong>世界: 計算した距離が画素に入る様子を見る</strong>
+      </a>
     </main>
 
     <script type="module" src="./src/app.js"></script>

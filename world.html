@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>世界 | iToF Learning Dashboard</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body data-page="world">
@@ -26,26 +27,32 @@
       <nav class="main-nav" aria-label="dashboard pages">
         <a href="./index.html">概要</a>
         <a href="./phase.html">位相</a>
+        <a href="./formulas.html">式と表</a>
         <a href="./world.html">世界</a>
         <a href="./htof.html">hTOF</a>
-        <a href="./formulas.html">式と表</a>
       </nav>
+      <p class="nav-hint">ナビは横にスクロールできます。</p>
 
       <section class="page-hero compact">
         <div>
-          <p class="eyebrow">sensor world</p>
+          <p class="eyebrow">画素の世界</p>
           <h1>画素ごとに距離が入る単純世界</h1>
         </div>
         <div class="hero-metrics">
           <div>
-            <span>pixels</span>
-            <strong>307,200</strong>
+            <span>画素数</span>
+            <strong>640x480</strong>
           </div>
           <div>
-            <span>blocks</span>
+            <span>積み木</span>
             <strong>8</strong>
           </div>
         </div>
+      </section>
+
+      <section class="lesson-note">
+        <strong>このページで学ぶこと</strong>
+        <p>1回の撮像で、各画素が1つの距離値を持つイメージを見ます。ここでは640x480個の画素に、1mから8mの積み木がどう写るかを単純化しています。</p>
       </section>
 
       <section class="lab-grid">
@@ -57,6 +64,7 @@
             </div>
           </div>
           <canvas id="sensor-canvas" class="sensor-canvas tall" aria-label="1mから8mの積み木深度ビュー"></canvas>
+          <p class="read-guide">この図は8個の積み木を単純化した深度画像です。学びの焦点は、色や大きさよりも「1画素に1つの距離が入る」ことです。</p>
         </section>
 
         <aside class="module">
@@ -73,8 +81,18 @@
             <div><span>反射</span><strong>欠測なし / ノイズなし</strong></div>
             <div><span>経路</span><strong>直達1本のみ</strong></div>
           </div>
+          <div class="term-grid">
+            <div><span>欠測なし</span><strong>光は必ず戻る</strong></div>
+            <div><span>ノイズなし</span><strong>距離値が揺れない</strong></div>
+            <div><span>直達1本のみ</span><strong>寄り道反射を考えない</strong></div>
+          </div>
         </aside>
       </section>
+
+      <a class="next-card" href="./htof.html">
+        <span>次に見るページ</span>
+        <strong>hTOF: 粗い距離帯と細かい割合で距離を作る</strong>
+      </a>
     </main>
 
     <script type="module" src="./src/app.js"></script>

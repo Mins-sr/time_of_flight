@@ -112,20 +112,32 @@ function renderPhaseTable() {
   }
 
   const rows = tableRows(state.frequencyMegahertz);
+  const range = unambiguousRangeMeters(state.frequencyMegahertz);
 
   elements.tableBody.replaceChildren(
     ...rows.map((row) => {
       const tr = document.createElement("tr");
       const values = [
-        `${row.distanceMeters} m`,
-        `${row.roundTripNanoseconds.toFixed(3)} ns`,
-        `${row.phaseDegrees.toFixed(1)} deg`,
-        `${row.recoveredDistanceMeters.toFixed(3)} m`
+        { text: `${row.distanceMeters} m` },
+        { text: `${row.roundTripNanoseconds.toFixed(3)} ns` },
+        { text: `${row.phaseDegrees.toFixed(1)} deg` },
+        {
+          text: `${row.recoveredDistanceMeters.toFixed(3)} m`,
+          wrapped: row.distanceMeters > range
+        }
       ];
 
       for (const value of values) {
         const cell = document.createElement("td");
-        cell.textContent = value;
+        cell.textContent = value.text;
+
+        if (value.wrapped) {
+          const badge = document.createElement("span");
+          badge.className = "wrap-badge";
+          badge.textContent = "折り返し";
+          cell.append(badge);
+        }
+
         tr.append(cell);
       }
 
